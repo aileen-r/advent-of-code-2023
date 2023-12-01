@@ -4,8 +4,11 @@
   "description": "",
   "scripts": {
     "day": "node day-%npm_config_num%",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest day-%npm_config_num%/index.test.js"
   },
   "author": "aileen-r",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
