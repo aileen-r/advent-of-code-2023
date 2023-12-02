@@ -49,9 +49,29 @@ function part1(data) {
     return result;
 }
 
+function getFewestCubesForGame(game) {
+    return game.reduce(
+        (acc, curr) => {
+            acc.blue = Math.max(acc.blue, curr.blue);
+            acc.green = Math.max(acc.green, curr.green);
+            acc.red = Math.max(acc.red, curr.red);
+            return acc;
+        },
+        { blue: 0, green: 0, red: 0 }
+    );
+}
+
+function getPowerOfDraw(draw) {
+    return draw.red * draw.blue * draw.green;
+}
+
 function part2(data) {
-    const result = data;
-    return undefined;
+    const structuredData = data.map((line) =>
+        splitIntoDraws(line).map((draw) => structureDraw(draw))
+    );
+    const minimumSetPerGame = structuredData.map(getFewestCubesForGame);
+    const powerSumOfMinimumSetPerGame = minimumSetPerGame.reduce((acc, curr) => getPowerOfDraw(curr) + acc, 0);
+    return powerSumOfMinimumSetPerGame;
 }
 
 function run() {

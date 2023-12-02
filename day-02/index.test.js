@@ -64,3 +64,9 @@ describe("part1", () => {
         expect(part1(testData)).toBe(8);
     });
 });
+
+describe("part1", () => {
+    it("returns expected result for test data", () => {
+        expect(part2(testData)).toBe(2286);
+    });
+});
