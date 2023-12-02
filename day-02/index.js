@@ -4,7 +4,7 @@ function parse() {
     try {
         const useTestInput = process.argv[2] === "test";
         const filename = useTestInput ? "test-input.txt" : "input.txt";
-        const rawData = fs.readFileSync(`./day-01/${filename}`, "utf8");
+        const rawData = fs.readFileSync(`./day-02/${filename}`, "utf8");
         return rawData
             .split("\n")
             .filter((x) => x !== "")
@@ -51,7 +51,7 @@ function part1(data) {
 
 function part2(data) {
     const result = data;
-    return result;
+    return undefined;
 }
 
 function run() {
