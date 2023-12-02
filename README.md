@@ -14,3 +14,6 @@ Truly, I just want to actually complete this this year. Here we go...
 
 I forgot how much of Advent of Code is setting up a project how you like. Damn carriage returns and trying to figure out if synchronous file reading is okay...
 
+Some simple regex. The complexity comes in part 2 with finding and replacing letter spellings with digits, i.e. "eight" becomes "8".
+
+The challenge is with overlapping characters in a string like "eightwothree". Should this become "823" or "83"? Since we're only interested in the first and last digits, we would ultimately end up with 83 in both cases. That's the problem with the examples given. They don't show an example like "eightwo", which would end up as either 82 or 88, depending on how the find and replace should work. I am assuming find and replace runs from string start to end and by replacing "eight" with "8", the character "t" has been used up and therefore "eightwo" becomes 88.
