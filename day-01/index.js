@@ -1,8 +1,10 @@
 const fs = require("node:fs");
 
+// TODO: means to switch test and real inputs
+
 function parse() {
   try {
-    const rawData = fs.readFileSync("./day-01/test-input.txt", "utf8");
+    const rawData = fs.readFileSync("./day-01/input.txt", "utf8");
     return rawData.split("\n").filter(x => x !== "");
   } catch (err) {
     console.error("Error reading input:", err);
@@ -10,9 +12,10 @@ function parse() {
 }
 
 function getFirstAndLastDigits(line) {
-    const digits = line.match(/\d+/g);
-    return Number(digits.at(0) + digits.at(-1));
-};
+    const digits = line.match(/\d+/g).join("");
+    const result = Number(digits.at(0) + digits.at(-1));
+    return result;
+}
 
 function part1(data) {
     const result = data.reduce((acc, curr) => acc + getFirstAndLastDigits(curr), 0);

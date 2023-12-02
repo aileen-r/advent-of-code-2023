@@ -16,13 +16,19 @@ describe("data parsing", () => {
     });
 });
 
-describe("expected results", () => {
-    test("getFirstAndLastDigits", () => {
+describe("getFirstAndLastDigits", () => {
+    test("test input expected results", () => {
         const expectedResults = [12, 38, 15, 77];
         testData.forEach((line, idx) => {
             expect(getFirstAndLastDigits(line)).toBe(expectedResults[idx]);
         });
     });
+    test("input with adjacent digit chars", () => {
+        expect(getFirstAndLastDigits("one111jxlmc7tvklrmhdpsix")).toBe(17);
+    });
+});
+
+describe("expected results", () => {
     test("part1", () => {
         const testSolution = part1(testData);
         expect(testSolution).toBe(142);
