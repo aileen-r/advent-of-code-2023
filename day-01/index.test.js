@@ -2,9 +2,10 @@ require("node:fs");
 const {
     parse,
     getFirstAndLastDigits,
-    replaceSpelledNumbersWithDigits,
+    getAllDigitsAndSpelledDigits,
+    reducer,
     part1,
-    part2
+    part2,
 } = require("./index");
 
 const rawTestData = "1abc2\npqr3stu8vwx\na1b2c3d4e5f\ntreb7uchet";
@@ -43,24 +44,24 @@ describe("getFirstAndLastDigits", () => {
     });
 });
 
-describe("replaceSpelledNumbersWithDigits", () => {
+describe("getAllDigitsAndSpelledDigits", () => {
     test("test input expected results", () => {
         const expectedResults = [
-            "219",
-            "8wo3", // "eightwothree" - overlapping characters?
-            "abc123xyz",
-            "x2ne34", // "xtwone3four" - this could be dodgy
-            "49872",
-            "z1ight234", // "zoneight234" - likewise
-            "7pqrst6teen",
+            ["2", "1", "9"], // "two1nine"
+            ["8", "2", "3"], // "eightwothree"
+            ["1", "2", "3"], // "abcone2threexyz"
+            ["2", "1", "3", "4"], // "xtwone3four"
+            ["4", "9", "8", "7", "2"], // "4nineeightseven2"
+            ["1", "8", "2", "3", "4"], // "zoneight234"
+            ["7", "6"], // "7pqrstsixteen"
         ];
         testData2.forEach((line, idx) => {
-            expect(replaceSpelledNumbersWithDigits(line)).toBe(
+            expect(getAllDigitsAndSpelledDigits(line)).toStrictEqual(
                 expectedResults[idx]
             );
         });
     });
-    test("test input expected results and get digits", () => {
+    test("reducer", () => {
         const expectedResults = [
             29,
             83, // "eightwothree" - overlapping characters?
@@ -71,9 +72,9 @@ describe("replaceSpelledNumbersWithDigits", () => {
             76,
         ];
         testData2.forEach((line, idx) => {
-            expect(getFirstAndLastDigits(replaceSpelledNumbersWithDigits(line))).toBe(
-                expectedResults[idx]
-            );
+            expect(
+                reducer(0, line)
+            ).toBe(expectedResults[idx]);
         });
     });
 });
@@ -83,7 +84,7 @@ describe("expected results", () => {
         const testSolution = part1(testData1);
         expect(testSolution).toBe(142);
     });
-    
+
     test("part2", () => {
         const testSolution = part2(testData2);
         expect(testSolution).toBe(281);

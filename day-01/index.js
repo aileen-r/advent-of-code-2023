@@ -12,7 +12,6 @@ function parse() {
 }
 
 function getFirstAndLastDigits(line) {
-    console.log(line)
     const digits = line.match(/\d+/g).join("");
     const result = Number(digits.at(0) + digits.at(-1));
     return result;
@@ -37,22 +36,26 @@ const numberStringsToReplace = [
     "eight",
     "nine",
 ];
-const regex = new RegExp(numberStringsToReplace.join("|"), "g");
+/(?=[a-z][a-z])/g;
+const regex = new RegExp(`(?=(${numberStringsToReplace.join("|")}|\\d))`, "g");
 
-function replaceSpelledNumbersWithDigits(line) {
-    const replacedString = line.replace(
-        regex,
-        (match) => numberStringsToReplace.indexOf(match) + 1
-    );
-    return replacedString;
+function getAllDigitsAndSpelledDigits(line) {
+    const matches = Array.from(line.matchAll(regex)).map((match) => {
+        const numberStringIdx = numberStringsToReplace.indexOf(match[1]);
+        return numberStringIdx > -1
+            ? (numberStringIdx + 1).toString()
+            : match[1];
+    });
+    return matches;
 }
 
+function reducer(acc, curr) {
+    const digitsArray = getAllDigitsAndSpelledDigits(curr);
+    return acc + Number(digitsArray.at(0) + digitsArray.at(-1));
+} 
+
 function part2(data) {
-    const result = data.reduce(
-        (acc, curr) =>
-            acc + getFirstAndLastDigits(replaceSpelledNumbersWithDigits(curr)),
-        0
-    );
+    const result = data.reduce(reducer, 0);
     return result;
 }
 
@@ -69,7 +72,8 @@ run();
 module.exports = {
     parse,
     getFirstAndLastDigits,
-    replaceSpelledNumbersWithDigits,
+    getAllDigitsAndSpelledDigits,
+    reducer,
     part1,
     part2,
 };

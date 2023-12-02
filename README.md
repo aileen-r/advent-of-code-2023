@@ -17,3 +17,7 @@ I forgot how much of Advent of Code is setting up a project how you like. Damn c
 Some simple regex. The complexity comes in part 2 with finding and replacing letter spellings with digits, i.e. "eight" becomes "8".
 
 The challenge is with overlapping characters in a string like "eightwothree". Should this become "823" or "83"? Since we're only interested in the first and last digits, we would ultimately end up with 83 in both cases. That's the problem with the examples given. They don't show an example like "eightwo", which would end up as either 82 or 88, depending on how the find and replace should work. I am assuming find and replace runs from string start to end and by replacing "eight" with "8", the character "t" has been used up and therefore "eightwo" becomes 88.
+
+So I got the answer wrong. I've either made a coding error, of my assumption was incorrect and "eightwothree" should be interpreted as "823". I'll adjust for the latter and see what I get.
+
+As I started looking into how to do this, I found I'd need lookahead or lookbehind regex ([this blog entry](js find and replace with lookahead regex) was helpful). This felt like a lot of effort so I stopped by the subreddit to confirm I was on the right track. I was. Damn, this is savage for day 1.
