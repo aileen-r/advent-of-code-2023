@@ -3,12 +3,14 @@ const fs = require("node:fs");
 // TODO: means to switch test and real inputs
 
 function parse() {
-  try {
-    const rawData = fs.readFileSync("./day-01/input.txt", "utf8");
-    return rawData.split("\n").filter(x => x !== "");
-  } catch (err) {
-    console.error("Error reading input:", err);
-  }
+    try {
+        const useTestInput = process.argv[2] === "test";
+        const filename = useTestInput ? "test-input.txt" : "input.txt"
+        const rawData = fs.readFileSync("./day-01/input.txt", "utf8");
+        return rawData.split("\n").filter((x) => x !== "");
+    } catch (err) {
+        console.error("Error reading input:", err);
+    }
 }
 
 function getFirstAndLastDigits(line) {
@@ -18,16 +20,19 @@ function getFirstAndLastDigits(line) {
 }
 
 function part1(data) {
-    const result = data.reduce((acc, curr) => acc + getFirstAndLastDigits(curr), 0);
+    const result = data.reduce(
+        (acc, curr) => acc + getFirstAndLastDigits(curr),
+        0
+    );
     return result;
 }
 
 function run() {
-  const data = parse();
-  const part1Solution = part1(data);
-  console.log("Part 1 solution:", part1Solution);
+    const data = parse();
+    const part1Solution = part1(data);
+    console.log("Part 1 solution:", part1Solution);
 }
 
 run();
 
-module.exports = {parse, getFirstAndLastDigits, part1};
+module.exports = { parse, getFirstAndLastDigits, part1 };

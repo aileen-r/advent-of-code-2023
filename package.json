@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "day": "node day-%npm_config_num%",
+    "day:test": "node day-%npm_config_num% test",
     "test": "jest day-%npm_config_num%/index.test.js"
   },
   "author": "aileen-r",
