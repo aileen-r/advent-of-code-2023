@@ -21,3 +21,13 @@ The challenge is with overlapping characters in a string like "eightwothree". Sh
 So I got the answer wrong. I've either made a coding error, of my assumption was incorrect and "eightwothree" should be interpreted as "823". I'll adjust for the latter and see what I get.
 
 As I started looking into how to do this, I found I'd need lookahead or lookbehind regex ([this blog entry](js find and replace with lookahead regex) was helpful). This felt like a lot of effort so I stopped by the subreddit to confirm I was on the right track. I was. Damn, this is savage for day 1.
+
+## Day 02
+
+This was much easier for me because there weren't any edge case "gotchas" with the puzzle input compared to the test input.
+
+Most of the work in this one is taking a string input and transforming it into well-structured data. Once my data was structured how I wanted it (an array of "games", each of which contains an array of "draws", and a "draw" contains an object with the count of each block colour), doing the necessary calculation methodically was simple.
+
+On another note, I'm always a bit embarassed by the lines of code I commit for these problems. The internet is full of leet code types with single-line solutions, while I'm declaring so many functions and variables. I do prefer my approach for readability as well as creating smaller units for testing, but I still can't quite shake that impostor syndrome-adjacent feeling.
+
+It's worth noting that while I'll avoid the obvious performance sins, I'm not optimising for speed until the challenge requires it.
