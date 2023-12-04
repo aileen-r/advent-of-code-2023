@@ -31,3 +31,7 @@ Most of the work in this one is taking a string input and transforming it into w
 On another note, I'm always a bit embarassed by the lines of code I commit for these problems. The internet is full of leet code types with single-line solutions, while I'm declaring so many functions and variables. I do prefer my approach for readability as well as creating smaller units for testing, but I still can't quite shake that impostor syndrome-adjacent feeling.
 
 It's worth noting that while I'll avoid the obvious performance sins, I'm not optimising for speed until the challenge requires it.
+
+## Day 03
+
+I went about this entirely the wrong way to start. I considered "adjacent number" to be any single-character digit at an adjacent coordinate. I didn't read the question carefully which shows numbers are not single-digit. Oops.
